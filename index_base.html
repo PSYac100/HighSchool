@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- 웹 페이지 이름 삽입 -->
+  <title>공간정보 웹 서비스 구현</title>
+  <link rel="stylesheet" href="node_modules/ol/ol.css">
+  <!-- 구글 링크 붙여넣기 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Gowun+Dodum&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <!-- 웹 페이지 제목 부분 작성 -->
+    <div id="header">
+       <h1> 연속지적도형정보 공간정보시스템</h1>
+    </div> <!-- header 닫힘 -->
+    <br>
+    <!-- 컨텐츠 부분을 메뉴, 지도 2부분으로 나눌 예정 -->
+    <!-- 영역을 어떻게 보여줄지에 맞추어서 순서대로 정렬 -->
+    <div id="contents">
+      <div id="menu">
+          <h3> 서울특별시</h3>
+          <ul class="regionList">
+            <li>강남구</li>
+          </ul>
+       </div> <!-- menu 닫힘 -->
+ 
+      <div id="mapArea">
+        <div id="map">
+        </div>
+    </div> <!-- mapArea 닫힘 -->
+  </div> <!-- contents 닫힘 -->
+      <div id="popup" class="ol-popup">
+      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+      <div id="popup-content"></div>
+    </div>
+  </div> <!-- container 닫힘 -->
+
+  <script type="module" src="./main.js"></script>
+
+</html>

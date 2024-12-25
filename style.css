@@ -1,0 +1,139 @@
+@import "node_modules/ol/ol.css";
+
+/* 전역적 스타일 정의 */
+* {
+	margin: 0;
+	padding: 0;
+	/* 구글폰트 설정 */
+	font-family: "Gamja Flower";
+	font-size: 1.03em;
+}
+
+html, body {
+	margin: 0;
+	height: 100%;
+}
+
+/* 주요 레이아웃 정의 */
+.container {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+#header {
+	height: 15%;
+	background: #0f3a63;
+	border-bottom: 1px solid #d4d4d4;
+}
+
+#contents {
+	position: absolute;
+	height: 85%;
+	top: 15%;
+	left: 0;
+	right: 0;
+}
+
+/* DIV영역 여러개를 나란히 놓으려면, float 속성을 이용 */
+/* left는 DIV 영역을 차례대로 왼쪽부터 정렬
+   right는 DIV 영역을 역순으로 마지막 영역부터 왼쪽에서 정렬 */
+#menu {
+	width: 20%;
+	height: 100%;
+	float: left;
+	border-right: 1px solid #d4d4d4;
+	background: #efefef;
+}
+
+#mapArea {
+	/* position은 absolute로 지정하고 left 옵션을 주어 왼쪽에서 해당 위치 만큼 띄워줌 */
+	position: absolute; 
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 20%;
+	}
+
+#map {
+	width: 100%;
+	height: 100%;
+}
+
+/* 헤더 부분 스타일 설정 */
+#header h1 {
+	color: #fff;
+	text-align: center;
+	padding: 23px 0px 0px 0px;
+	font-size: 2.0em;
+}
+
+/* menu 스타일 설정 */
+#menu h3 {
+	color: #0f3a63;
+	text-align: left;
+	font-size: 1.5em;
+	padding: 20px 0px 0px 20px;
+}
+
+/* menu 중 목록(ul) 부분 스타일 설정 */
+ul.regionList {
+	background: #efefef;
+	margin: 20px 0;
+}
+
+ul.regionList li {
+	color: #0f3a63;
+	text-align: left;
+	font-size: 1.2em;
+	padding: 0px 0px 0px 50px;
+}
+
+/* popup 스타일 설정 */
+.ol-popup {
+	position: absolute;
+	background-color: white;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	padding: 15px;
+	border-radius: 10px;
+	border: 1px solid #cccccc;
+	bottom: 12px;
+	left: -50px;
+	min-width: 280px;
+}
+
+.ol-popup:after, .ol-popup:before {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.ol-popup:after {
+	border-top-color: white;
+	border-width: 10px;
+	left: 48px;
+	margin-left: -10px;
+}
+
+.ol-popup:before {
+	border-top-color: #cccccc;
+	border-width: 11px;
+	left: 48px;
+	margin-left: -11px;
+}
+
+.ol-popup-closer {
+	text-decoration: none;
+	position: absolute;
+	top: 2px;
+	right: 8px;
+}
+
+.ol-popup-closer:after {
+	content: "✖";
+}
+
