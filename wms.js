@@ -2,7 +2,7 @@
 // GeoServer에 있는 camping을 이미지로 서비스
 
 import './style.css';
-import {Map, View} from 'ol';
+import { Map, View } from 'ol';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import TileWMS from 'ol/source/TileWMS';
@@ -15,15 +15,16 @@ const osm = new TileLayer({
 });
 
 const wms = new TileLayer({
-  source : new TileWMS({
+  source: new TileWMS({
     // url: g_url+'/geoserver/topp/wms',
     url: 'http://localhost:8080/geoserver/GeoWS/wms',
-    params:{
-      'LAYERS':'CampWS:camp',
+    params: {
+      'LAYERS': 'GeoWS:camp',
       'TILED': true,
-      'FORMAT': 'image/png'}
-    })
-  });
+      'FORMAT': 'image/png'
+    }
+  })
+});
 
 const map = new Map({
   layers: [osm, wms],
@@ -31,7 +32,7 @@ const map = new Map({
   target: 'map',
   view: new View({
     // 지도가 보여지는 중심점 설정
-    center: [14270476,4300535],
+    center: [14270476, 4300535],
     // 확대 정도 설정
     zoom: 7.2,
   }),
