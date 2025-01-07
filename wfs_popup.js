@@ -13,6 +13,11 @@ import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js';
 import {bbox as bboxStrategy} from 'ol/loadingstrategy.js';
 import {Circle, Fill, Stroke, Style} from 'ol/style.js';
 
+import Overlay from 'ol/Overlay.js';
+import XYZ from 'ol/source/XYZ.js';
+import {toLonLat} from 'ol/proj.js';
+import {toStringHDMS} from 'ol/coordinate.js';
+
 // url을 변수로 빼서 따로 설정해 줘도 됨
 // const g_url = "http://localhost:8080";
 
@@ -34,6 +39,7 @@ const vectorSource = new VectorSource({
   },
   strategy: bboxStrategy,
 });
+
 
 const vector = new VectorLayer({
   source: vectorSource,
@@ -57,14 +63,55 @@ const vector = new VectorLayer({
 })
 
 
+/**
+ * Elements that make up the popup.
+ */
+const container = document.getElementById('popup');
+const content = document.getElementById('popup-content');
+const closer = document.getElementById('popup-closer');
+
+/**
+ * Create an overlay to anchor the popup to the map.
+ */
+const overlay = new Overlay({
+  element: container,
+  autoPan: {
+    animation: {
+      duration: 250,
+    },
+  },
+});
+
+/**
+ * Add a click handler to hide the popup.
+ * @return {boolean} Don't follow the href.
+ */
+closer.onclick = function () {
+  overlay.setPosition(undefined);
+  closer.blur();
+  return false;
+};
+
 const map = new Map({
   layers: [osm, vector],
   //layers: [osm], 레이어가 두개 이상일 때 ,로 구분하여 표기
   target: 'map',
+  overlays: [overlay],
   view: new View({
     // 지도가 보여지는 중심점 설정
     center: [14270476, 4300535],
     // 확대 정도 설정
     zoom: 7.2,
   }),
+});
+
+/**
+ * Add a click handler to the map to render the popup.
+ */
+map.on('singleclick', function (evt) {
+  const coordinate = evt.coordinate;
+  const hdms = toStringHDMS(toLonLat(coordinate));
+
+  content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
+  overlay.setPosition(coordinate);
 });
